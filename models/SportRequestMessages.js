@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const UserWantsToPlaySportsSchema = new Schema({
+const sportRequestMessagesSchema = new Schema({
+    sportDescription: {
+        type: String,
+        required: true
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
@@ -10,8 +14,8 @@ const UserWantsToPlaySportsSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    userDescription: {
-        type: String,
+    postId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     date: {
@@ -20,4 +24,4 @@ const UserWantsToPlaySportsSchema = new Schema({
     },
 });
 
-module.exports = mongoose.model('userWantsToPlaySports', UserWantsToPlaySportsSchema);
+module.exports = mongoose.model('sportRequestMessages', sportRequestMessagesSchema);

@@ -22,7 +22,11 @@ const UserSchema = new Schema({
     findingFriend: {
         type: Number,
         default: 1
-    }
+    },
+    registerDate: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 module.exports = mongoose.model('users', UserSchema);

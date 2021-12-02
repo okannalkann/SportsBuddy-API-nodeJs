@@ -18,6 +18,8 @@ const games = require('./routes/games');
 const sports = require('./routes/sports');
 const userWantsToPlayGames = require('./routes/userWantToPlayGames');
 const userWantsToPlaySports = require('./routes/userWantToPlaySports');
+const GameRequestMessages = require('./routes/gameRequestMessages');
+const SportRequestMessages = require('./routes/sportRequestMessages');
 
 var app = express();
 
@@ -52,6 +54,8 @@ app.use('/games', games);
 app.use('/sports', sports);
 app.use('/userWantToPlayGames', userWantsToPlayGames);
 app.use('/userWantToPlaySports', userWantsToPlaySports);
+app.use('/gameRequestMessages', GameRequestMessages);
+app.use('/sportRequestMessages', SportRequestMessages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
