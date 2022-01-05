@@ -1,0 +1,36 @@
+<h1 style="color:white;"><b> Games</b> </h1>
+
+<form action="" method="POST">
+    <label for="game_types">Game Category</label>
+    <select name="categories" id="game_types">
+    <option value="All" name="game_cate">All Games</option>
+    <% for (let i of data) { %>
+        <option value="<%= i.name %>" name="game_cate"><%= i.name %></option>
+    <% } %>
+    </select>
+    <input type="submit" value="Submit" name="game_filter">
+</form>
+
+    
+
+    <!-- <div class="container">
+        <div class="row"style="padding-top:20px;">
+            <% for (let i of adad) { %>
+                <div class="col-lg-2 ">
+                  <div class="cardwidth">
+                      <div class="card bg-dark mb-4 game_card">
+                          <a href="/games/{{data[i][0]}}">
+  
+                            <img class="card-img-top mx-auto s" style="text-align:center;" src="https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-285x380.jpg" >
+                            
+                            <div class="card-body">
+                                <h4 class="card-title longname text-white">{{data[i][1]}}</h4>
+
+                            </div>
+                           </a>
+                      </div>
+                  </div>
+                </div>
+              <br>    
+        </div>
+      </div> -->
