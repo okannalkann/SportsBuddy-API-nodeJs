@@ -1,0 +1,28 @@
+<%- contentFor('body') %>
+<div class="container">
+    <div class="row">
+        <% if (data) { %>
+            <% for(var i=0; i<data.length; i++){ %>
+            <div class="col-lg-2">
+                <div class="cardwidth">
+                    <div class="card bg-dark mb-4 game_card">
+                        <a href="/games">
+
+                        <img class="card-img-top mx-auto" style="text-align:center;" 
+                        src="https://www.google.com/search?q=<%- data[i].name %>&sxsrf=AOaemvLbDlISXj9PZqxkC9RJArqNd3iiGg:1641813012803&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjniamLhqf1AhVWSPEDHah6BOIQ_AUoAnoECAEQBA&biw=2064&bih=1085&dpr=0.9" 
+                            alt="Card image cap">
+                        
+                        <div class="card-body">
+                            <h4 class="card-title longname text-white"><%- data[i].name %></h4>
+                            <% for(var k=0; k<data[i].categoryName.length; k++){ %>
+                                <h6 class="text-muted category"><%-data[i].categoryName[k].category %></h6>
+                            <% } %> 
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        <% } %>
+    </div>
+    </div>

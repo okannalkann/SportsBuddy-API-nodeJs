@@ -5,6 +5,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const gamesCont = require('./routes/games')
+const expressLayouts = require('express-ejs-layouts');
 
 const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
@@ -20,9 +22,10 @@ const SportRequestMessages = require('./routes/sportRequestMessages');
 
 var app = express();
 
-app.set('views', path.join(__dirname, "views"));
+// app.set('views', path.join(__dirname, 'views'));
+app.use('/public', express.static('public'));
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
-
 
 //Database
 mongoose.connect('mongodb://localhost/SportsBuddyApi');
@@ -33,15 +36,12 @@ mongoose.connection.on('error', (err) => {
     console.log('MongoDB: Error', err);
 });
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public'), {redirect: false}));
+
 
 app.use(cors())
 app.use('/', indexRouter);
@@ -52,6 +52,7 @@ app.use('/userWantToPlayGames', userWantsToPlayGames);
 app.use('/userWantToPlaySports', userWantsToPlaySports);
 app.use('/gameRequestMessages', GameRequestMessages);
 app.use('/sportRequestMessages', SportRequestMessages);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,7 +69,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  // res.render('error');
 });
 
 module.exports = app;
