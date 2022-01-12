@@ -1,25 +1,19 @@
-var express = require('express');
 const Games = require('../models/Games');
-var ejs = require('ejs');
 
-const getGames = (req, res, next) => { // List the all Games
-    const promise = Games.find({});
-
-    promise.then((data) => {
-      console.log('asd');
-      res.render('games', { data: data });
-
-      // return res.json(data);
-    }).catch((err) => {
-      res.json(err.message);
+const getGames = async (req, res) => { // Get game by Id
+    const list = await Games.find({});
+    res.render('games', {
+      data: list
     });
 }
 
 const getGamesbyId = (req, res, next) => { // Get game by Id
   const promise = Games.findById(req.params._id);
-      
+     
     promise.then((data) => {
-      res.json(data);
+      console.log(data);
+
+      req.json(data);
     }).catch((err) => {
       res.json(err);
     })
